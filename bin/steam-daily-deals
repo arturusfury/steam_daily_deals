@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/steam_daily_deals'
+
+SteamDailyDeals::CLI.new.call
