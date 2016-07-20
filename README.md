@@ -1,4 +1,4 @@
-# SteamDailyDeals
+# Steam Daily Deals Gem
 
 Using this ruby CLI gem you will be able to quickly see which games are on sale today. It will pull the information directly from the steam homepage so it should always be the most up to date information available to the public!
 
@@ -27,7 +27,7 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Expected Flow
 
-Type `steam-daily-deals`
+Type `steam_daily_deals`
 
 Get a message back `Welcome! Here are the daily deals available on Steam today:`
 
@@ -53,4 +53,4 @@ Type `1`
 
 Get another prompt `Would you like to see the list of deals again or would you like to exit?`
 
-Expect user to enter `deals` or `list` or `steam-daily-deals` or `exit`
+Expect user to enter `deals` or `list` or `steam_daily_deals` or `exit`
