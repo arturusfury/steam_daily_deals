@@ -12,9 +12,9 @@ end
 
 # CLI class
 class SteamDailyDeals::CLI
-
   def call
     puts <<-DOC
+
     ad88888ba  888888888888  88888888888         db         88b           d88
    d8"     "8b      88       88                 d88b        888b         d888
    Y8,              88       88                d8'`8b       88`8b       d8'88
@@ -23,11 +23,11 @@ class SteamDailyDeals::CLI
            `8b      88       88             d8""""""""8b    88   `8b d8'   88
    Y8a     a8P      88       88            d8'        `8b   88    `888'    88
     "Y88888P"       88       88888888888  d8'          `8b  88     `8'     88
-              ____          _  _          ____                _
-             |  _ \\   __ _ (_)| | _   _  |  _ \\   ___   __ _ | | ___
-             | | | | / _` || || || | | | | | | | / _ \\ / _` || |/ __|
-             | |_| || (_| || || || |_| | | |_| ||  __/| (_| || |\\__ \\
-             |____/  \\__,_||_||_| \\__, | |____/  \\___| \\__,_||_||___/
+              ____          _  _           ____                _
+             |  _ \\   __ _ (_)| | _   _   |  _ \\   ___   __ _ | | ___
+             | | | | / _` || || || | | |  | | | | / _ \\ / _` || |/ __|
+             | |_| || (_| || || || |_| |  | |_| ||  __/| (_| || |\\__ \\
+             |____/  \\__,_||_||_| \\__, |  |____/  \\___| \\__,_||_||___/
                                   |___/
 
     DOC
@@ -60,7 +60,7 @@ class SteamDailyDeals::CLI
   def list_deals
     extend CommandLineReporter
 
-    table(:border => true) do
+    table(border: true) do
       row do
         column('No', width: 3, align: 'center')
         column('Title', width: 45, padding: 2)
@@ -90,17 +90,22 @@ class SteamDailyDeals::CLI
 
     case deal
     when '1'
+      # Deal Title and Price
       table(border: true) do
         row do
           column('Batman: Tell Tale', width: 67, align: 'center', color: 'cyan')
           column('$19.99', width: 10, align: 'center', color: 'red')
         end
       end
+
+      # Deal Description
       table(border: true) do
         row do
           column('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', width: 80)
         end
       end
+
+      # Details
       table(border: true) do
         row do
           column('Release Date', width: 33, color: 'cyan')
@@ -116,17 +121,22 @@ class SteamDailyDeals::CLI
         end
       end
     when '2'
+      # Deal Title and Price
       table(border: true) do
         row do
           column('Trove', width: 67, align: 'center', color: 'cyan')
           column('Free', width: 10, align: 'center', color: 'green')
         end
       end
+
+      # Deal Description
       table(border: true) do
         row do
           column('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', width: 80)
         end
       end
+
+      # Details
       table(border: true) do
         row do
           column('Release Date', width: 33, color: 'cyan')
