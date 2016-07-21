@@ -3,6 +3,7 @@ class SteamDailyDeals::Deal
   attr_accessor :name,
                 :final_price,
                 :app_url,
+                :availibility,
                 :description,
                 :release_date,
                 :ratings,
