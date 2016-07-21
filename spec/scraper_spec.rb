@@ -14,7 +14,7 @@ describe 'SteamDailyDeals::Scraper' do
         recent_reviews: '8,907',
         overall_rating: 'Very Positive',
         total_reviews: '127,740',
-        popular_tags: ''
+        popular_tags: ['Open World', 'Action', 'Multiplayer', 'First-Person', 'Third Person', 'Crime', 'Adventure', 'Shooter', 'Third-Person Shooter', 'Singleplayer', 'Atmospheric', 'Mature', 'Racing', 'Sandbox', 'Co-op', 'Great Soundtrack', 'Funny', 'Comedy', 'Moddable', 'RPG']
       },
       {
         name: 'Batman',
