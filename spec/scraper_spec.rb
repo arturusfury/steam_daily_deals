@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require 'spec_helper'
 
 describe 'SteamDailyDeals::Scraper' do
   let!(:daily_deal_array) do
@@ -64,7 +64,7 @@ describe 'SteamDailyDeals::Scraper' do
   end
 
   describe '#scrape_index_page' do
-    index_url = './fixtures/Welcome_to_Steam.htm'
+    index_url = 'spec/fixtures/Welcome_to_Steam.htm'
     daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
 
     it 'is a class method that scrapes the steam homepage and returns an array of hashes for each daily deal' do
@@ -101,7 +101,7 @@ describe 'SteamDailyDeals::Scraper' do
   end
 
   describe '#scrape_deal_page' do
-    index_url = './fixtures/Welcome to Steam.htm'
+    index_url = 'spec/fixtures/Welcome_to_Steam.htm'
     daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
 
     it "makes sure our data that has been returned is a hash" do
