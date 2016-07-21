@@ -70,6 +70,13 @@ describe 'SteamDailyDeals::Scraper' do
       expect(daily_deals).to be_a(Array)
       expect(daily_deals.first).to have_key(:final_price)
       expect(daily_deals.first).to have_key(:app_url)
+      expect(daily_deals.first).to have_key(:availibility)
+    end
+
+    it "grabs the first deal from the homepage and set's the values in the hash correctly" do
+      index_url = './fixtures/Welcome to Steam.htm'
+      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
+      expect(daily_deals.first[:final_price]).to equal(daily_deal_array[0][:final_price])
     end
   end
 
