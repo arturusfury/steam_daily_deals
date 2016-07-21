@@ -58,7 +58,7 @@ describe 'SteamDailyDeals::Scraper' do
         recent_reviews: '357',
         overall_rating: 'Mixed',
         total_reviews: '12,333',
-        popular_tags: ''
+        popular_tags: ['Free to Play', 'Trading Card Game', 'Card Game', 'Strategy', 'Magic', 'Multiplayer', 'Co-op', 'Singleplayer', 'Fantasy', 'Online Co-Op']
       }
     ]
   end
