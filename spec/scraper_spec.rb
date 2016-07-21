@@ -53,9 +53,11 @@ describe 'SteamDailyDeals::Scraper' do
         app_url: 'http://store.steampowered.com/app/316010/?snr=1_4_4__100',
         availibility: 'Free to Play',
         description: 'MORE CARDS. MORE STRATEGY. BIGGER STORY. Playing Magic with your friends has never been more fun! Featuring more than 125 NEW unique earnable cards from Magic’s Eldritch Moon set, NEW Story Content, and more.',
-        release_date: '',
-        overall_rating: '',
-        total_reviews: '',
+        release_date: 'Jul 29, 2015',
+        recent_rating: 'Mixed',
+        recent_reviews: '357',
+        overall_rating: 'Mixed',
+        total_reviews: '12,333',
         popular_tags: ''
       }
     ]
