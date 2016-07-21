@@ -18,7 +18,7 @@ describe 'SteamDailyDeals::Scraper' do
         final_price: '$22.49',
         app_url: 'http://store.steampowered.com/app/498240/?snr=1_4_4__100_2',
         availibility: 'Pre-Order',
-        description: '',
+        description: 'Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight.',
         release_date: '',
         ratings: '',
         popular_tags: ''
@@ -28,17 +28,17 @@ describe 'SteamDailyDeals::Scraper' do
         final_price: '$19.99',
         app_url: 'http://store.steampowered.com/app/295670/?snr=1_4_4__130_14',
         availibility: 'Early Access',
-        description: '',
+        description: 'HIVE JUMP is a sci-fi action platformer for 1-4 players blending run ‘n gun gameplay with roguelike elements.',
         release_date: '',
         ratings: '',
         popular_tags: ''
       },
       {
-        name: 'Brainbread',
+        name: 'BrainBread 2',
         final_price: 'Free',
         app_url: 'http://store.steampowered.com/app/346330/?snr=1_4_4__130_12',
         availibility: 'Early Access',
-        description: '',
+        description: 'Grab a weapon, demolish your enemies, level up, become more powerful, let the gore flow, let the limbs fly. BrainBread 2 introduces a zombie fps mixed with RPG / Arcade elements, the game is very action-packed and generally fast-paced.',
         release_date: '',
         ratings: '',
         popular_tags: ''
@@ -48,7 +48,7 @@ describe 'SteamDailyDeals::Scraper' do
         final_price: 'Free',
         app_url: 'http://store.steampowered.com/app/316010/?snr=1_4_4__100',
         availibility: 'Free to Play',
-        description: '',
+        description: 'MORE CARDS. MORE STRATEGY. BIGGER STORY. Playing Magic with your friends has never been more fun! Featuring more than 125 NEW unique earnable cards from Magic’s Eldritch Moon set, NEW Story Content, and more.',
         release_date: '',
         ratings: '',
         popular_tags: ''
