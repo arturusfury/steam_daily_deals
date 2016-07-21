@@ -6,7 +6,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Grand Theft Auto V',
         final_price: '$40.19',
-        app_url: 'http://store.steampowered.com/app/271590/?snr=1_4_4__100',
+        app_url: './fixtures/Grand_Theft_Auto_V.htm',
         availibility: 'Now Available',
         description: 'GTA Online: Cunning Stunts -- Play Now. Check out a series of brand-new, high octane Stunt Races. Including all new vehicles, racing-themed clothing and more. Buckle up and prepare to experience Southern San Andreas from a whole new perspective.',
         release_date: 'Apr 14, 2015',
@@ -19,7 +19,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Batman - The Telltale Series',
         final_price: '$22.49',
-        app_url: 'http://store.steampowered.com/app/498240/?snr=1_4_4__100_2',
+        app_url: './fixtures/Batman_The_Telltale_Series.htm',
         availibility: 'Pre-Order',
         description: 'Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight.',
         overall_rating: 'No user reviews',
@@ -28,7 +28,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Hive Jump',
         final_price: '$19.99',
-        app_url: 'http://store.steampowered.com/app/295670/?snr=1_4_4__130_14',
+        app_url: './fixtures/Hive_Jump.htm',
         availibility: 'Early Access',
         description: 'HIVE JUMP is a sci-fi action platformer for 1-4 players blending run ‘n gun gameplay with roguelike elements.',
         release_date: 'Jul 20, 2016',
@@ -39,7 +39,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'BrainBread 2',
         final_price: 'Free',
-        app_url: 'http://store.steampowered.com/app/346330/?snr=1_4_4__130_12',
+        app_url: './fixtures/BrainBread_2.htm',
         availibility: 'Early Access',
         description: 'Grab a weapon, demolish your enemies, level up, become more powerful, let the gore flow, let the limbs fly. BrainBread 2 introduces a zombie fps mixed with RPG / Arcade elements, the game is very action-packed and generally fast-paced.',
         release_date: 'Jul 20, 2016',
@@ -50,7 +50,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Magic Duels',
         final_price: 'Free',
-        app_url: 'http://store.steampowered.com/app/316010/?snr=1_4_4__100',
+        app_url: './fixtures/Magic_Duels.htm',
         availibility: 'Free to Play',
         description: 'MORE CARDS. MORE STRATEGY. BIGGER STORY. Playing Magic with your friends has never been more fun! Featuring more than 125 NEW unique earnable cards from Magic’s Eldritch Moon set, NEW Story Content, and more.',
         release_date: 'Jul 29, 2015',
@@ -64,7 +64,7 @@ describe 'SteamDailyDeals::Scraper' do
   end
 
   describe '#scrape_index_page' do
-    index_url = './fixtures/Welcome to Steam.htm'
+    index_url = './fixtures/Welcome_to_Steam.htm'
     daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
 
     it 'is a class method that scrapes the steam homepage and returns an array of hashes for each daily deal' do
@@ -101,6 +101,12 @@ describe 'SteamDailyDeals::Scraper' do
   end
 
   describe '#scrape_deal_page' do
+    index_url = './fixtures/Welcome to Steam.htm'
+    daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
+
+    daily_deals.each do |deal|
+      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(deal[:app_url])
+    end
 
   end
 end
