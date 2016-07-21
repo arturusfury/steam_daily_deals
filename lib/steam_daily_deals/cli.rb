@@ -60,6 +60,12 @@ class SteamDailyDeals::CLI
   def list_deals
     extend CommandLineReporter
 
+    @deals = SteamDailyDeals::Deal.all
+
+    # @deals.each do |deal|
+    #
+    # end
+
     table(border: true) do
       row do
         column('No', width: 3, align: 'center')
@@ -87,6 +93,10 @@ class SteamDailyDeals::CLI
 
   def show_deal(deal)
     extend CommandLineReporter
+
+    # A cheaty way to get a seperation in between the listed deals
+    puts
+    puts
 
     case deal
     when '1'
