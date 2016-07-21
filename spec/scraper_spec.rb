@@ -42,9 +42,9 @@ describe 'SteamDailyDeals::Scraper' do
         app_url: 'http://store.steampowered.com/app/346330/?snr=1_4_4__130_12',
         availibility: 'Early Access',
         description: 'Grab a weapon, demolish your enemies, level up, become more powerful, let the gore flow, let the limbs fly. BrainBread 2 introduces a zombie fps mixed with RPG / Arcade elements, the game is very action-packed and generally fast-paced.',
-        release_date: '',
-        overall_rating: '',
-        total_reviews: '',
+        release_date: 'Jul 20, 2016',
+        overall_rating: 'Mixed',
+        total_reviews: '125',
         popular_tags: ''
       },
       {
