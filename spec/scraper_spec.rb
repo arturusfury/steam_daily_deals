@@ -8,9 +8,12 @@ describe 'SteamDailyDeals::Scraper' do
         final_price: '$40.19',
         app_url: 'http://store.steampowered.com/app/271590/?snr=1_4_4__100',
         availibility: 'Now Available',
-        description: '',
-        release_date: '',
-        ratings: '',
+        description: 'GTA Online: Cunning Stunts -- Play Now. Check out a series of brand-new, high octane Stunt Races. Including all new vehicles, racing-themed clothing and more. Buckle up and prepare to experience Southern San Andreas from a whole new perspective.',
+        release_date: 'Apr 14, 2015',
+        recent_rating: 'Mostly Positive',
+        recent_reviews: '8,907',
+        overall_rating: 'Very Positive',
+        total_reviews: '127,740',
         popular_tags: ''
       },
       {
@@ -20,7 +23,7 @@ describe 'SteamDailyDeals::Scraper' do
         availibility: 'Pre-Order',
         description: 'Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight.',
         release_date: '',
-        ratings: '',
+        overall_rating: 'No user reviews',
         popular_tags: ''
       },
       {
@@ -30,7 +33,8 @@ describe 'SteamDailyDeals::Scraper' do
         availibility: 'Early Access',
         description: 'HIVE JUMP is a sci-fi action platformer for 1-4 players blending run ‘n gun gameplay with roguelike elements.',
         release_date: '',
-        ratings: '',
+        overall_rating: '',
+        total_reviews: '',
         popular_tags: ''
       },
       {
@@ -40,7 +44,8 @@ describe 'SteamDailyDeals::Scraper' do
         availibility: 'Early Access',
         description: 'Grab a weapon, demolish your enemies, level up, become more powerful, let the gore flow, let the limbs fly. BrainBread 2 introduces a zombie fps mixed with RPG / Arcade elements, the game is very action-packed and generally fast-paced.',
         release_date: '',
-        ratings: '',
+        overall_rating: '',
+        total_reviews: '',
         popular_tags: ''
       },
       {
@@ -50,7 +55,8 @@ describe 'SteamDailyDeals::Scraper' do
         availibility: 'Free to Play',
         description: 'MORE CARDS. MORE STRATEGY. BIGGER STORY. Playing Magic with your friends has never been more fun! Featuring more than 125 NEW unique earnable cards from Magic’s Eldritch Moon set, NEW Story Content, and more.',
         release_date: '',
-        ratings: '',
+        overall_rating: '',
+        total_reviews: '',
         popular_tags: ''
       }
     ]
