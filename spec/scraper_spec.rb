@@ -49,7 +49,6 @@ describe 'SteamDailyDeals::Scraper' do
       },
       {
         name: 'Magic Duels',
-        final_price: 'Free',
         app_url: './fixtures/Magic_Duels.htm',
         availibility: 'Free to Play',
         description: 'MORE CARDS. MORE STRATEGY. BIGGER STORY. Playing Magic with your friends has never been more fun! Featuring more than 125 NEW unique earnable cards from Magic’s Eldritch Moon set, NEW Story Content, and more.',
@@ -95,7 +94,6 @@ describe 'SteamDailyDeals::Scraper' do
     end
 
     it "grabs the fifth deal from the homepage and set's the values in the hash correctly" do
-      expect(daily_deals[4][:final_price]).to eq(daily_deal_array[4][:final_price])
       expect(daily_deals[4][:app_url]).to eq(daily_deal_array[4][:app_url])
     end
   end
