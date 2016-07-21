@@ -64,9 +64,10 @@ describe 'SteamDailyDeals::Scraper' do
   end
 
   describe '#scrape_index_page' do
+    index_url = './fixtures/Welcome to Steam.htm'
+    daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
+
     it 'is a class method that scrapes the steam homepage and returns an array of hashes for each daily deal' do
-      index_url = './fixtures/Welcome to Steam.htm'
-      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
       expect(daily_deals).to be_a(Array)
       expect(daily_deals.first).to have_key(:final_price)
       expect(daily_deals.first).to have_key(:app_url)
@@ -74,38 +75,28 @@ describe 'SteamDailyDeals::Scraper' do
     end
 
     it "grabs the first deal from the homepage and set's the values in the hash correctly" do
-      index_url = './fixtures/Welcome to Steam.htm'
-      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
-      expect(daily_deals.first[:final_price]).to equal(daily_deal_array[0][:final_price])
-      expect(daily_deals.first[:app_url]).to equal(daily_deal_array[0][:app_url])
+      expect(daily_deals.first[:final_price]).to eq(daily_deal_array[0][:final_price])
+      expect(daily_deals.first[:app_url]).to eq(daily_deal_array[0][:app_url])
     end
 
     it "grabs the second deal from the homepage and set's the values in the hash correctly" do
-      index_url = './fixtures/Welcome to Steam.htm'
-      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
-      expect(daily_deals[1]final_price]).to equal(daily_deal_array[1][:final_price])
-      expect(daily_deals[1][:app_url]).to equal(daily_deal_array[1][:app_url])
+      expect(daily_deals[1][:final_price]).to eq(daily_deal_array[1][:final_price])
+      expect(daily_deals[1][:app_url]).to eq(daily_deal_array[1][:app_url])
     end
 
     it "grabs the third deal from the homepage and set's the values in the hash correctly" do
-      index_url = './fixtures/Welcome to Steam.htm'
-      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
-      expect(daily_deals[2][:final_price]).to equal(daily_deal_array[2][:final_price])
-      expect(daily_deals[2][:app_url]).to equal(daily_deal_array[2][:app_url])
+      expect(daily_deals[2][:final_price]).to eq(daily_deal_array[2][:final_price])
+      expect(daily_deals[2][:app_url]).to eq(daily_deal_array[2][:app_url])
     end
 
     it "grabs the fourth deal from the homepage and set's the values in the hash correctly" do
-      index_url = './fixtures/Welcome to Steam.htm'
-      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
-      expect(daily_deals[3][:final_price]).to equal(daily_deal_array[3][:final_price])
-      expect(daily_deals[3][:app_url]).to equal(daily_deal_array[3][:app_url])
+      expect(daily_deals[3][:final_price]).to eq(daily_deal_array[3][:final_price])
+      expect(daily_deals[3][:app_url]).to eq(daily_deal_array[3][:app_url])
     end
 
     it "grabs the fifth deal from the homepage and set's the values in the hash correctly" do
-      index_url = './fixtures/Welcome to Steam.htm'
-      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
-      expect(daily_deals[4][:final_price]).to equal(daily_deal_array[4][:final_price])
-      expect(daily_deals[4][:app_url]).to equal(daily_deal_array[4][:app_url])
+      expect(daily_deals[4][:final_price]).to eq(daily_deal_array[4][:final_price])
+      expect(daily_deals[4][:app_url]).to eq(daily_deal_array[4][:app_url])
     end
   end
 
