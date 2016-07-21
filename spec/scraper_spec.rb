@@ -23,7 +23,7 @@ describe 'SteamDailyDeals::Scraper' do
         availibility: 'Pre-Order',
         description: 'Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight.',
         overall_rating: 'No user reviews',
-        popular_tags: ''
+        popular_tags: ['Batman', 'Adventure', 'Point & Click', 'Story Rich', 'Singleplayer', 'Choices Matter', 'Superhero', 'Action', 'Atmospheric', 'Episodic', 'Memes', 'Dating Sim', 'Quick-Time Events', 'Nudity', 'Dark', 'Anime', 'Comedy', 'Multiplayer']
       },
       {
         name: 'Hive Jump',
