@@ -17,7 +17,7 @@ describe 'SteamDailyDeals::Scraper' do
         popular_tags: ['Open World', 'Action', 'Multiplayer', 'First-Person', 'Third Person', 'Crime', 'Adventure', 'Shooter', 'Third-Person Shooter', 'Singleplayer', 'Atmospheric', 'Mature', 'Racing', 'Sandbox', 'Co-op', 'Great Soundtrack', 'Funny', 'Comedy', 'Moddable', 'RPG']
       },
       {
-        name: 'Batman',
+        name: 'Batman - The Telltale Series',
         final_price: '$22.49',
         app_url: 'http://store.steampowered.com/app/498240/?snr=1_4_4__100_2',
         availibility: 'Pre-Order',
@@ -34,7 +34,7 @@ describe 'SteamDailyDeals::Scraper' do
         release_date: 'Jul 20, 2016',
         overall_rating: 'Positive',
         total_reviews: '7',
-        popular_tags: ''
+        popular_tags: ['Early Access', 'Action', 'Indie', 'Procedural Generation', 'Multiplayer', 'Local Co-op', 'Sci-fi', 'Aliens', 'Pixel Graphics', 'Co-op', 'Great Soundtrack', 'Arcade', 'Colorful', 'Platformer']
       },
       {
         name: 'BrainBread 2',
