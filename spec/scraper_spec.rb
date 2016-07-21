@@ -22,7 +22,6 @@ describe 'SteamDailyDeals::Scraper' do
         app_url: 'http://store.steampowered.com/app/498240/?snr=1_4_4__100_2',
         availibility: 'Pre-Order',
         description: 'Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight.',
-        release_date: '',
         overall_rating: 'No user reviews',
         popular_tags: ''
       },
@@ -32,9 +31,9 @@ describe 'SteamDailyDeals::Scraper' do
         app_url: 'http://store.steampowered.com/app/295670/?snr=1_4_4__130_14',
         availibility: 'Early Access',
         description: 'HIVE JUMP is a sci-fi action platformer for 1-4 players blending run ‘n gun gameplay with roguelike elements.',
-        release_date: '',
-        overall_rating: '',
-        total_reviews: '',
+        release_date: 'Jul 20, 2016',
+        overall_rating: 'Positive',
+        total_reviews: '7',
         popular_tags: ''
       },
       {
