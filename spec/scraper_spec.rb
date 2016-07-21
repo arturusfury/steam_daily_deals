@@ -6,7 +6,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Grand Theft Auto V',
         final_price: '$40.19',
-        app_url: './fixtures/Grand_Theft_Auto_V.htm',
+        app_url: 'spec/fixtures/Grand_Theft_Auto_V.htm',
         availibility: 'Now Available',
         description: 'GTA Online: Cunning Stunts -- Play Now. Check out a series of brand-new, high octane Stunt Races. Including all new vehicles, racing-themed clothing and more. Buckle up and prepare to experience Southern San Andreas from a whole new perspective.',
         release_date: 'Apr 14, 2015',
@@ -19,7 +19,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Batman - The Telltale Series',
         final_price: '$22.49',
-        app_url: './fixtures/Batman_The_Telltale_Series.htm',
+        app_url: 'spec/fixtures/Batman_The_Telltale_Series.htm',
         availibility: 'Pre-Order',
         description: 'Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight.',
         overall_rating: 'No user reviews',
@@ -28,7 +28,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'Hive Jump',
         final_price: '$19.99',
-        app_url: './fixtures/Hive_Jump.htm',
+        app_url: 'spec/fixtures/Hive_Jump.htm',
         availibility: 'Early Access',
         description: 'HIVE JUMP is a sci-fi action platformer for 1-4 players blending run ‘n gun gameplay with roguelike elements.',
         release_date: 'Jul 20, 2016',
@@ -39,7 +39,7 @@ describe 'SteamDailyDeals::Scraper' do
       {
         name: 'BrainBread 2',
         final_price: 'Free',
-        app_url: './fixtures/BrainBread_2.htm',
+        app_url: 'spec/fixtures/BrainBread_2.htm',
         availibility: 'Early Access',
         description: 'Grab a weapon, demolish your enemies, level up, become more powerful, let the gore flow, let the limbs fly. BrainBread 2 introduces a zombie fps mixed with RPG / Arcade elements, the game is very action-packed and generally fast-paced.',
         release_date: 'Jul 20, 2016',
@@ -49,7 +49,7 @@ describe 'SteamDailyDeals::Scraper' do
       },
       {
         name: 'Magic Duels',
-        app_url: './fixtures/Magic_Duels.htm',
+        app_url: 'spec/fixtures/Magic_Duels.htm',
         availibility: 'Free to Play',
         description: 'MORE CARDS. MORE STRATEGY. BIGGER STORY. Playing Magic with your friends has never been more fun! Featuring more than 125 NEW unique earnable cards from Magic’s Eldritch Moon set, NEW Story Content, and more.',
         release_date: 'Jul 29, 2015',
