@@ -105,16 +105,21 @@ describe 'SteamDailyDeals::Scraper' do
     daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
 
     it "makes sure our data that has been returned is a hash" do
-      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deal[0][:app_url])
+      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deals[0][:app_url])
       expect(deal_info).to be_a(Hash)
     end
 
     it "makes sure hash contains the right keys" do
-      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deal[0][:app_url])
+      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deals[0][:app_url])
       expect(deal_info).to have_key(:name)
       expect(deal_info).to have_key(:description)
       expect(deal_info).to have_key(:overall_rating)
       expect(deal_info).to have_key(:popular_tags)
+    end
+
+    it "scrapes the name from our deal page and adds it to our hash" do
+      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deal[0][:app_url])
+      expect(deal_info[:name]).to eq(daily_deal_array[0][:name])
     end
   end
 end
