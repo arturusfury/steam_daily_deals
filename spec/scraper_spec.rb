@@ -50,4 +50,18 @@ describe 'SteamDailyDeals::Scraper' do
       }
     ]
   end
+
+  describe '#scrape_index_page' do
+    it 'is a class method that scrapes the steam homepage and returns an array of hashes for each daily deal' do
+      index_url = './fixtures/Welcome to Steam.htm'
+      daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
+      expect(daily_deals).to be_a(Array)
+      expect(daily_deals.first).to have_key(:final_price)
+      expect(daily_deals.first).to have_key(:app_url)
+    end
+  end
+
+  describe '#scrape_deal_page' do
+
+  end
 end
