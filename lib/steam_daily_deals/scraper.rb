@@ -1,5 +1,5 @@
 # Scraper class
-class Scraper
+class SteamDailyDeals::Scraper
   def self.scrape_index_page(index_url)
     # Stuff
   end
