@@ -104,9 +104,17 @@ describe 'SteamDailyDeals::Scraper' do
     index_url = './fixtures/Welcome to Steam.htm'
     daily_deals = SteamDailyDeals::Scraper.scrape_index_page(index_url)
 
-    daily_deals.each do |deal|
-      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(deal[:app_url])
+    it "makes sure our data that has been returned is a hash" do
+      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deal[0][:app_url])
+      expect(deal_info).to be_a(Hash)
     end
 
+    it "makes sure hash contains the right keys" do
+      deal_info = SteamDailyDeals::Scraper.scrape_deal_page(daily_deal[0][:app_url])
+      expect(deal_info).to have_key(:name)
+      expect(deal_info).to have_key(:description)
+      expect(deal_info).to have_key(:overall_rating)
+      expect(deal_info).to have_key(:popular_tags)
+    end
   end
 end
