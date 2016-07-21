@@ -45,7 +45,7 @@ describe 'SteamDailyDeals::Scraper' do
         release_date: 'Jul 20, 2016',
         overall_rating: 'Mixed',
         total_reviews: '125',
-        popular_tags: ''
+        popular_tags: ['Early Access', 'Free to Play', 'Action', 'Indie', 'Zombies', 'Adventure', 'Arcade', 'Great Soundtrack', 'RPG', 'Action RPG', 'Classic', 'Multiplayer']
       },
       {
         name: 'Magic Duels',
