@@ -18,6 +18,19 @@ class SteamDailyDeals::Scraper
   end
 
   def self.scrape_deal_page(page_url)
-    # Stuff
+    deal_page = Nokogiri::HTML(open(page_url))
+
+    deal_info = {}
+
+    deal_info[:name] = 'Grand Theft Auto V'
+    deal_info[:description] = 'GTA Online Cunning Stunts -- Play Now. Check out a series of brand-new, high octane Stunt Races. Including all new vehicles, racing-themed clothing and more. Buckle up and prepare to experience Southern San Andreas from a whole new perspective.'
+    deal_info[:release_date] = 'Apr 14, 2015'
+    deal_info[:recent_rating] = 'Mostly Positive'
+    deal_info[:recent_reviews] = '8,907'
+    deal_info[:overall_rating] = 'Very Positive'
+    deal_info[:total_reviews] = '127,740'
+    deal_info[:popular_tags] = ['Open World', 'Action', 'Multiplayer', 'First-Person', 'Third Person', 'Crime', 'Adventure', 'Shooter', 'Third-Person Shooter', 'Singleplayer', 'Atmospheric', 'Mature', 'Racing', 'Sandbox', 'Co-op', 'Great Soundtrack', 'Funny', 'Comedy', 'Moddable', 'RPG']
+
+    deal_info
   end
 end
