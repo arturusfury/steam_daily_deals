@@ -57,6 +57,17 @@ class SteamDailyDeals::CLI
     end
   end
 
+  def make_deals
+    deals_array = SteamDailyDeals::Scraper.scrape_index_page(index_url)
+    SteamDailyDeals::Deal.create_from_collection(deals_array)
+  end
+
+  def add_deal_info
+    SteamDailyDeals::Deal.all.each do |deal|
+      # Stuff
+    end
+  end
+
   def list_deals
     extend CommandLineReporter
 
