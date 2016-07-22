@@ -4,16 +4,16 @@ class SteamDailyDeals::Scraper
     browser = Selenium::WebDriver.for :phantomjs
     browser.get url
 
+    if browser.page_source.include?('not be appropriate for all')
+     browser.find_element(:class, 'btn_grey_white_innerfade').click
+    end
+
     if browser.page_source.include?('birth date')
       dropdown = browser.find_element(:id, 'ageYear')
       option = Selenium::WebDriver::Support::Select.new(dropdown)
       option.select_by(:text, '1961')
       option.select_by(:value, '1961')
       browser.find_element(:class, 'btnv6_blue_hoverfade').click
-    end
-
-    if browser.page_source.include?('not be appropriate for all')
-      browser.find_element(:class, 'btn_grey_white_innerfade').click
     end
 
     page_contents = Nokogiri::HTML(browser.page_source)
@@ -37,7 +37,7 @@ class SteamDailyDeals::Scraper
   end
 
   def self.scrape_deal_page(page_url)
-    deal_page = Nokogiri::HTML(open(page_url))
+    deal_page = get_page(page_url)
 
     deal_info = {}
 
