@@ -55,7 +55,7 @@ describe 'Deal' do
     end
 
     it 'expects that the newly created deal class is added to our collection of deals stored in @@all' do
-      expect(SteamDailyDeals::Deal.all.first.name).to eq('Grand Theft Auto V')
+      expect(SteamDailyDeals::Deal.all.first.final_price).to eq('$40.19')
     end
   end
 
@@ -71,6 +71,9 @@ describe 'Deal' do
     it 'uses our scraper classes to grab all the information on the deal' do
       gta5.add_deal_information(deal_hash)
       expect(gta5.name).to equal('Grand Theft Auto V')
+      expect(gta5.overall_rating).to equal('Very Positive')
+      expect(gta5.popular_tags).to be_a(Array)
+      expect(gta5.popular_tags).to equal(['Open World', 'Action', 'Multiplayer', 'First-Person', 'Third Person', 'Crime', 'Adventure', 'Shooter', 'Third-Person Shooter', 'Singleplayer', 'Atmospheric', 'Mature', 'Racing', 'Sandbox', 'Co-op', 'Great Soundtrack', 'Funny', 'Comedy', 'Moddable', 'RPG'])
     end
   end
 
