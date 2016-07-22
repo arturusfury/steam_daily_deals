@@ -64,7 +64,8 @@ class SteamDailyDeals::CLI
 
   def add_deal_info
     SteamDailyDeals::Deal.all.each do |deal|
-      # Stuff
+      info = SteamDailyDeals::Scraper.scrape_deal_page(deal.app_url)
+      deal.add_deal_info(info)
     end
   end
 
