@@ -83,6 +83,4 @@ describe 'Deal' do
       expect(SteamDailyDeals::Deal.all).to match_array([])
     end
   end
-
-
 end
