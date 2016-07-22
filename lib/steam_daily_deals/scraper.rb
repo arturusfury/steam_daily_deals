@@ -12,6 +12,10 @@ class SteamDailyDeals::Scraper
       browser.find_element(:class, 'btnv6_blue_hoverfade').click
     end
 
+    if browser.page_source.include?('not be appropriate for all')
+      browser.find_element(:class, 'btn_grey_white_innerfade').click
+    end
+
     page_contents = Nokogiri::HTML(browser.page_source)
     browser.quit
     page_contents
