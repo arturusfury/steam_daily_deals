@@ -18,6 +18,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/arturusfury/steam_daily_deals. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+## Credits
+
+I would like to thank the creators of Selenium-Webkit (https://github.com/SeleniumHQ/selenium/tree/master/rb), PhantomJS (https://github.com/ariya/phantomjs), the PhantomJS gem (https://github.com/colszowka/phantomjs-gem), and the Command Line Reporter (https://github.com/wbailey/command_line_reporter) tools for all their hard work which helped me complete my project.
 
 ## License
 
