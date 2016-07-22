@@ -63,7 +63,7 @@ describe 'Deal' do
     it 'uses our scraper classes to grab the data and create new deals' do
       SteamDailyDeals::Deal.class_variable_set(:@@all, [])
       SteamDailyDeals::Deal.create_from_collection(deal_index_array)
-      epect(SteamDailyDeals::Deal.class_variable_get.last.app_url).to eq('spec/fixtures/Magic_Duels.htm')
+      expect(SteamDailyDeals::Deal.class_variable_get(:@@all).last.app_url).to eq('spec/fixtures/Magic_Duels.htm')
     end
   end
 
