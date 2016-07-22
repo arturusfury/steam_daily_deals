@@ -32,6 +32,10 @@ class SteamDailyDeals::CLI
 
     DOC
 
+    puts "Please wait while we load today's daily deals".red
+    make_deals
+    add_deal_details
+
     menu
   end
 
@@ -43,10 +47,8 @@ class SteamDailyDeals::CLI
       case input
       when 'list'
         list_deals
-      when '1'
-        show_deal(input)
-      when '2'
-        show_deal(input)
+      when input.to_i.between?(1, SteamDailyDeals::Deal.all.count)
+        show_deal(input.to_i)
       when 'exit'
         puts 'See you tomorrow!'.green
         break
@@ -58,14 +60,14 @@ class SteamDailyDeals::CLI
   end
 
   def make_deals
-    deals_array = SteamDailyDeals::Scraper.scrape_index_page(index_url)
+    deals_array = SteamDailyDeals::Scraper.scrape_index_page
     SteamDailyDeals::Deal.create_from_collection(deals_array)
   end
 
-  def add_deal_info
+  def add_deal_details
     SteamDailyDeals::Deal.all.each do |deal|
       info = SteamDailyDeals::Scraper.scrape_deal_page(deal.app_url)
-      deal.add_deal_info(info)
+      deal.add_deal_information(info)
     end
   end
 
