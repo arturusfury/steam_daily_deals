@@ -105,8 +105,8 @@ class SteamDailyDeals::CLI
         row do
           column(i.to_s, color: 'cyan')
           column(deal.name)
-          column(deal.final_price, color: 'red', align: 'right')
-          column(deal.availibility, color: 'green', align: 'left')
+          column(deal.final_price, color: 'red')
+          column(deal.availibility, color: 'green')
         end
       end
     end
@@ -147,7 +147,7 @@ class SteamDailyDeals::CLI
       unless deal_details.release_date.nil?
         row do
           column('Release Date', width: 53, color: 'cyan')
-          column('October 2016', width: 100)
+          column(deal_details.release_date, width: 100)
         end
       end
 
@@ -155,9 +155,9 @@ class SteamDailyDeals::CLI
         review_text = "#{deal_details.recent_rating} #{deal_details.recent_reviews}"
         row do
           column('Recent Reviews', width: 53, color: 'cyan')
-          if review_text.include('positive')
+          if review_text.downcase.include?('positive')
             column(review_text, width: 100, color: 'green')
-          elsif review_text.include('negative')
+          elsif review_text.downcase.include?('negative')
             column(review_text, width: 100, color: 'red')
           else
             column(review_text, width: 100, color: 'yellow')
@@ -169,9 +169,9 @@ class SteamDailyDeals::CLI
         review_text = "#{deal_details.overall_rating} #{deal_details.total_reviews}"
         row do
           column('Overall Reviews', width: 53, color: 'cyan')
-          if review_text.include('positive')
+          if review_text.downcase.include?('positive')
             column(review_text, width: 100, color: 'green')
-          elsif review_text.include('negative')
+          elsif review_text.downcase.include?('negative')
             column(review_text, width: 100, color: 'red')
           else
             column(review_text, width: 100, color: 'yellow')
