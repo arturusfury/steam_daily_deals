@@ -55,7 +55,7 @@ class SteamDailyDeals::CLI
     until input == 'exit'
       input = gets.strip.downcase
 
-      if (input.to_i..SteamDailyDeals::Deal.all.count)
+      if input.to_i.between?(1, SteamDailyDeals::Deal.all.count)
         show_deal(input.to_i)
       elsif input == 'list'
         list_deals
@@ -69,7 +69,7 @@ class SteamDailyDeals::CLI
   end
 
   def make_deals
-    deals_array = SteamDailyDeals::Scraper.scrape_index_page.uniq
+    deals_array = SteamDailyDeals::Scraper.scrape_index_page('spec/fixtures/Welcome_to_Steam.htm').uniq
     SteamDailyDeals::Deal.create_from_collection(deals_array)
   end
 
