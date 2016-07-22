@@ -44,7 +44,7 @@ class SteamDailyDeals::Scraper
     deal_info[:name] = deal_page.css('.apphub_AppName').text
 
     unless deal_page.css('.game_description_snippet').nil?
-      deal_info[:description] = deal_page.css('.game_description_snippet').text
+      deal_info[:description] = deal_page.css('.game_description_snippet').text.delete("\t").delete("\n")
     end
 
     unless deal_page.css('.date').nil?
@@ -66,6 +66,8 @@ class SteamDailyDeals::Scraper
     end
 
     deal_info[:popular_tags] = deal_page.css('.popular_tags').children.css('a').map(&:text)
+
+    deal_info[:popular_tags].map { |tag| tag.delete!("\t").delete!("\n") }
 
     deal_info
   end
