@@ -22,6 +22,12 @@ class SteamDailyDeals::Deal
     @@all << self
   end
 
+  def self.create_from_collection(deals)
+    deals.each do |deal|
+      new(deal)
+    end
+  end
+
   def self.all
     @@all
   end
