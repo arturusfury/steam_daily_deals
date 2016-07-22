@@ -6,7 +6,10 @@ class SteamDailyDeals::Deal
                 :availibility,
                 :description,
                 :release_date,
-                :ratings,
+                :recent_rating,
+                :recent_reviews,
+                :overall_rating,
+                :total_reviews,
                 :popular_tags
 
   @@all = []
