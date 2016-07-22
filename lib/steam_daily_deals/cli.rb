@@ -69,7 +69,7 @@ class SteamDailyDeals::CLI
   end
 
   def make_deals
-    deals_array = SteamDailyDeals::Scraper.scrape_index_page('spec/fixtures/Welcome_to_Steam.htm').uniq
+    deals_array = SteamDailyDeals::Scraper.scrape_index_page.uniq
     SteamDailyDeals::Deal.create_from_collection(deals_array)
   end
 
@@ -77,6 +77,8 @@ class SteamDailyDeals::CLI
     SteamDailyDeals::Deal.all.each do |deal|
       info = SteamDailyDeals::Scraper.scrape_deal_page(deal.app_url)
       deal.add_deal_information(info)
+      loading_info = "Loaded #{deal.name}"
+      header(title: loading_info, color: 'red', align: 'center', width: 160, spacing: 0)
     end
   end
 
@@ -110,15 +112,14 @@ class SteamDailyDeals::CLI
     extend CommandLineReporter
 
     # A cheaty way to get a seperation in between the listed deals
-    puts
-    puts
+    vertical_spacing 2
 
     deal_details = SteamDailyDeals::Deal.all[deal - 1]
 
     # Deal Title and Price
     table(border: true) do
       row do
-        column(deal_details.name, width: 97, align: 'center', color: 'cyan')
+        column(deal_details.name, width: 143, align: 'center', color: 'cyan')
         if deal_details.final_price.nil? || deal_details.final_price == ''
           column('Free', width: 10, align: 'center', color: 'red')
         else
@@ -130,25 +131,40 @@ class SteamDailyDeals::CLI
     # Deal Description
     table(border: true) do
       row do
-        column(deal_details.description, width: 160)
+        column(deal_details.description, width: 156)
       end
     end
 
-    # # Details
-    # table(border: true) do
-    #   row do
-    #     column('Release Date', width: 33, color: 'cyan')
-    #     column('October 2016', width: 44)
-    #   end
-    #   row do
-    #     column('Customer Reviews', width: 33, color: 'cyan')
-    #     column('Mostly Negative (1 Review)', width: 44, color: 'red')
-    #   end
-    #   row do
-    #     column('Popular Tags', width: 33, color: 'cyan')
-    #     column('Batman, Tell Tale, Storytelling', width: 44)
-    #   end
-    # end
+    # Details
+    table(border: true) do
+      unless deal_details.release_date.nil?
+        row do
+          column('Release Date', width: 53, color: 'cyan')
+          column('October 2016', width: 100)
+        end
+      end
+
+      unless deal_details.overall_rating.nil?
+        review_text = "#{deal_details.overall_rating} #{deal_details.total_reviews}"
+        row do
+          column('Customer Reviews', width: 53, color: 'cyan')
+          column(review_text, width: 100, color: 'red')
+        end
+      end
+
+      unless deal_details.recent_rating.nil?
+        review_text = "#{deal_details.recent_rating} #{deal_details.recent_reviews}"
+        row do
+          column('Customer Reviews', width: 53, color: 'cyan')
+          column(review_text, width: 100, color: 'red')
+        end
+      end
+
+      row do
+        column('Popular Tags', width: 53, color: 'cyan')
+        column(deal_details.popular_tags.join(", "), width: 100)
+      end
+    end
 
     print "Please type list to get a list of today's deals or type exit to quit the program: ".cyan
   end
