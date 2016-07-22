@@ -79,12 +79,6 @@ class SteamDailyDeals::CLI
   def list_deals
     extend CommandLineReporter
 
-    @deals = SteamDailyDeals::Deal.all
-
-    # @deals.each do |deal|
-    #
-    # end
-
     table(border: true) do
       row do
         column('No', width: 3, align: 'center')
@@ -92,17 +86,15 @@ class SteamDailyDeals::CLI
         column('Price', width: 8, align: 'right')
         column('Status', width: 15)
       end
-      row do
-        column('1', color: 'cyan')
-        column('Batman: Tell Tale')
-        column('$19.99', color: 'red')
-        column('Pre-Order', color: 'green')
-      end
-      row do
-        column('2', color: 'cyan')
-        column('Trove')
-        column('Free', color: 'yellow')
-        column('Available', color: 'green')
+      @deals = SteamDailyDeals::Deal.all
+
+      @deals.each.with_index(1) do |deal, i|
+        row do
+          column(i.to_s, color: 'cyan')
+          column(deal.name)
+          column(deal.final_price, color: 'red')
+          column(deal.availibility, color: 'green')
+        end
       end
     end
 
