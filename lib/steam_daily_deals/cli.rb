@@ -90,9 +90,9 @@ class SteamDailyDeals::CLI
         column('Price', width: 16, align: 'center')
         column('Status', width: 31, align: 'center')
       end
-      @deals = SteamDailyDeals::Deal.all
+      deals = SteamDailyDeals::Deal.all
 
-      @deals.each.with_index(1) do |deal, i|
+      deals.each.with_index(1) do |deal, i|
         row do
           column(i.to_s, color: 'cyan')
           column(deal.name)
@@ -113,70 +113,42 @@ class SteamDailyDeals::CLI
     puts
     puts
 
-    case deal
-    when '1'
-      # Deal Title and Price
-      table(border: true) do
-        row do
-          column('Batman: Tell Tale', width: 67, align: 'center', color: 'cyan')
-          column('$19.99', width: 10, align: 'center', color: 'red')
-        end
-      end
+    deal_details = SteamDailyDeals::Deal.all[deal - 1]
 
-      # Deal Description
-      table(border: true) do
-        row do
-          column('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', width: 80)
-        end
-      end
-
-      # Details
-      table(border: true) do
-        row do
-          column('Release Date', width: 33, color: 'cyan')
-          column('October 2016', width: 44)
-        end
-        row do
-          column('Customer Reviews', width: 33, color: 'cyan')
-          column('Mostly Negative (1 Review)', width: 44, color: 'red')
-        end
-        row do
-          column('Popular Tags', width: 33, color: 'cyan')
-          column('Batman, Tell Tale, Storytelling', width: 44)
-        end
-      end
-    when '2'
-      # Deal Title and Price
-      table(border: true) do
-        row do
-          column('Trove', width: 67, align: 'center', color: 'cyan')
-          column('Free', width: 10, align: 'center', color: 'green')
-        end
-      end
-
-      # Deal Description
-      table(border: true) do
-        row do
-          column('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', width: 80)
-        end
-      end
-
-      # Details
-      table(border: true) do
-        row do
-          column('Release Date', width: 33, color: 'cyan')
-          column('January 1, 2012', width: 44)
-        end
-        row do
-          column('Customer Reviews', width: 33, color: 'cyan')
-          column('Mostly Positive (120 Reviews)', width: 44, color: 'green')
-        end
-        row do
-          column('Popular Tags', width: 33, color: 'cyan')
-          column('Open World, MMO, Building', width: 44)
+    # Deal Title and Price
+    table(border: true) do
+      row do
+        column(deal_details.name, width: 97, align: 'center', color: 'cyan')
+        if deal_details.final_price.nil? || deal_details.final_price == ''
+          column('Free', width: 10, align: 'center', color: 'red')
+        else
+          column(deal_details.final_price, width: 10, align: 'center', color: 'red')
         end
       end
     end
+
+    # Deal Description
+    table(border: true) do
+      row do
+        column(deal_details.description, width: 160)
+      end
+    end
+
+    # # Details
+    # table(border: true) do
+    #   row do
+    #     column('Release Date', width: 33, color: 'cyan')
+    #     column('October 2016', width: 44)
+    #   end
+    #   row do
+    #     column('Customer Reviews', width: 33, color: 'cyan')
+    #     column('Mostly Negative (1 Review)', width: 44, color: 'red')
+    #   end
+    #   row do
+    #     column('Popular Tags', width: 33, color: 'cyan')
+    #     column('Batman, Tell Tale, Storytelling', width: 44)
+    #   end
+    # end
 
     print "Please type list to get a list of today's deals or type exit to quit the program: ".cyan
   end
