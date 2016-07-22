@@ -2,7 +2,16 @@
 class SteamDailyDeals::Scraper
   def self.get_page(url)
     browser = Selenium::WebDriver.for :phantomjs
-    browser.get url
+    browser.get 'http://store.steampowered.com/app/319630/' # url
+
+    if browser.page_source.include?('birth date')
+      dropdown = browser.find_element(:id, 'ageYear')
+      option = Selenium::WebDriver::Support::Select.new(dropdown)
+      option.select_by(:text, '1961')
+      option.select_by(:value, '1961')
+      browser.find_element(:class, 'btnv6_blue_hoverfade').click
+    end
+
     page_contents = Nokogiri::HTML(browser.page_source)
     browser.quit
     page_contents
@@ -24,28 +33,21 @@ class SteamDailyDeals::Scraper
   end
 
   def self.scrape_deal_page(page_url)
-    deal_page = Nokogiri::HTML(page_url)
+    deal_page = Nokogiri::HTML(open(page_url))
 
     deal_info = {}
 
-    deal_page.each do |item|
-      deal_info[:name] = item.css('div.apphub_AppName').txt
+    deal_info[:name] = deal_page.css('.apphub_AppName').text
+
+    unless deal_page.css('.game_description_snippet').nil?
+      deal_info[:description] = deal_page.css('.game_description_snippet').text
     end
 
-    tags = deal_page.css('.glance_tags popular_tags').children.css('a').map do |url|
-      url.attribute('href').value
+    unless deal_page.css('.date').nil?
+      deal_info[:release_date] = deal_page.css('.date').text
     end
 
-    deal_info[:popular_tags] = tags
-
-    # deal_info[:name] = 'Grand Theft Auto V'
-    # deal_info[:description] = 'GTA Online Cunning Stunts -- Play Now. Check out a series of brand-new, high octane Stunt Races. Including all new vehicles, racing-themed clothing and more. Buckle up and prepare to experience Southern San Andreas from a whole new perspective.'
-    # deal_info[:release_date] = 'Apr 14, 2015'
-    # deal_info[:recent_rating] = 'Mostly Positive'
-    # deal_info[:recent_reviews] = '8,907'
-    # deal_info[:overall_rating] = 'Very Positive'
-    # deal_info[:total_reviews] = '127,740'
-    # deal_info[:popular_tags] = ['Open World', 'Action', 'Multiplayer', 'First-Person', 'Third Person', 'Crime', 'Adventure', 'Shooter', 'Third-Person Shooter', 'Singleplayer', 'Atmospheric', 'Mature', 'Racing', 'Sandbox', 'Co-op', 'Great Soundtrack', 'Funny', 'Comedy', 'Moddable', 'RPG']
+    deal_info[:popular_tags] = deal_page.css('.popular_tags').children.css('a').map(&:text)
 
     deal_info
   end
