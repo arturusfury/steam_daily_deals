@@ -21,7 +21,7 @@ class SteamDailyDeals::Scraper
     page_contents
   end
 
-  def self.scrape_index_page(index_url)
+  def self.scrape_index_page(index_url = 'http://store.steampowered.com')
     deals = []
 
     get_page(index_url).css('div.cluster_scroll_area').each do |card|
