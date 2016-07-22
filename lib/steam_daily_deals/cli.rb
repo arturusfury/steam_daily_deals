@@ -15,32 +15,37 @@ class SteamDailyDeals::CLI
   def call
     extend CommandLineReporter
 
+    # This part here looks pretty ugly with the heredoc, but I'm not sure of a
+    # better way to make sure I have all of this text centered and keep the look
+    # I was working toward.  It can be completely removed and just made to have
+    # a regular "Welcome to the Steam Daily Deals" line, but this was an astetic
+    # choice
     puts <<-DOC
 
-    ad88888ba  888888888888  88888888888         db         88b           d88
-   d8"     "8b      88       88                 d88b        888b         d888
-   Y8,              88       88                d8'`8b       88`8b       d8'88
-   `Y8aaaaa,        88       88aaaaa          d8'  `8b      88 `8b     d8' 88
-     `"""""8b,      88       88"""""         d8YaaaaY8b     88  `8b   d8'  88
-           `8b      88       88             d8""""""""8b    88   `8b d8'   88
-   Y8a     a8P      88       88            d8'        `8b   88    `888'    88
-    "Y88888P"       88       88888888888  d8'          `8b  88     `8'     88
-              ____          _  _           ____                _
-             |  _ \\   __ _ (_)| | _   _   |  _ \\   ___   __ _ | | ___
-             | | | | / _` || || || | | |  | | | | / _ \\ / _` || |/ __|
-             | |_| || (_| || || || |_| |  | |_| ||  __/| (_| || |\\__ \\
-             |____/  \\__,_||_||_| \\__, |  |____/  \\___| \\__,_||_||___/
-                                  |___/
+                                            ad88888ba  888888888888  88888888888         db         88b           d88
+                                           d8"     "8b      88       88                 d88b        888b         d888
+                                           Y8,              88       88                d8'`8b       88`8b       d8'88
+                                           `Y8aaaaa,        88       88aaaaa          d8'  `8b      88 `8b     d8' 88
+                                             `"""""8b,      88       88"""""         d8YaaaaY8b     88  `8b   d8'  88
+                                                   `8b      88       88             d8""""""""8b    88   `8b d8'   88
+                                           Y8a     a8P      88       88            d8'        `8b   88    `888'    88
+                                            "Y88888P"       88       88888888888  d8'          `8b  88     `8'     88
+                                                      ____          _  _           ____                _
+                                                     |  _ \\   __ _ (_)| | _   _   |  _ \\   ___   __ _ | | ___
+                                                     | | | | / _` || || || | | |  | | | | / _ \\ / _` || |/ __|
+                                                     | |_| || (_| || || || |_| |  | |_| ||  __/| (_| || |\\__ \\
+                                                     |____/  \\__,_||_||_| \\__, |  |____/  \\___| \\__,_||_||___/
+                                                                           |___/
 
     DOC
 
-    horizontal_rule(width: 80, color: 'red')
-    header(title: 'Please wait while we load todays daily deals', color: 'red', align: 'center', width: 80, spacing: 0)
-    horizontal_rule(width: 80, color: 'red')
-    vertical_spacing 1
+    horizontal_rule(width: 160, color: 'red')
+    header(title: 'Please wait while we load todays daily deals', color: 'red', align: 'center', width: 160, spacing: 0)
     make_deals
+    header(title: 'This may take a minute to load everything', color: 'red', align: 'center', width: 160, spacing: 0)
     add_deal_details
-
+    horizontal_rule(width: 160, color: 'red')
+    vertical_spacing 1
     menu
   end
 
@@ -49,14 +54,13 @@ class SteamDailyDeals::CLI
     input = nil
     until input == 'exit'
       input = gets.strip.downcase
-      case input
-      when 'list'
-        list_deals
-      when input.to_i..SteamDailyDeals::Deal.all.count
+
+      if (input.to_i..SteamDailyDeals::Deal.all.count)
         show_deal(input.to_i)
-      when 'exit'
+      elsif input == 'list'
+        list_deals
+      elsif input == 'exit'
         puts 'See you tomorrow!'.green
-        break
       else
         puts "I'm sorry that was not a valid entry".red
         print "Please type list to get a list of today's deals or type exit to quit the program: ".cyan
@@ -65,7 +69,7 @@ class SteamDailyDeals::CLI
   end
 
   def make_deals
-    deals_array = SteamDailyDeals::Scraper.scrape_index_page
+    deals_array = SteamDailyDeals::Scraper.scrape_index_page.uniq
     SteamDailyDeals::Deal.create_from_collection(deals_array)
   end
 
@@ -81,10 +85,10 @@ class SteamDailyDeals::CLI
 
     table(border: true) do
       row do
-        column('No', width: 3, align: 'center')
-        column('Title', width: 45, padding: 2)
-        column('Price', width: 8, align: 'right')
-        column('Status', width: 15)
+        column('No', width: 6, align: 'center')
+        column('Title', width: 94, padding: 2, align: 'center')
+        column('Price', width: 16, align: 'center')
+        column('Status', width: 31, align: 'center')
       end
       @deals = SteamDailyDeals::Deal.all
 
@@ -92,8 +96,8 @@ class SteamDailyDeals::CLI
         row do
           column(i.to_s, color: 'cyan')
           column(deal.name)
-          column(deal.final_price, color: 'red')
-          column(deal.availibility, color: 'green')
+          column(deal.final_price, color: 'red', align: 'right')
+          column(deal.availibility, color: 'green', align: 'left')
         end
       end
     end
