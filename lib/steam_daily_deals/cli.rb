@@ -151,19 +151,31 @@ class SteamDailyDeals::CLI
         end
       end
 
-      unless deal_details.overall_rating.nil?
-        review_text = "#{deal_details.overall_rating} #{deal_details.total_reviews}"
-        row do
-          column('Customer Reviews', width: 53, color: 'cyan')
-          column(review_text, width: 100, color: 'red')
-        end
-      end
-
       unless deal_details.recent_rating.nil?
         review_text = "#{deal_details.recent_rating} #{deal_details.recent_reviews}"
         row do
-          column('Customer Reviews', width: 53, color: 'cyan')
-          column(review_text, width: 100, color: 'red')
+          column('Recent Reviews', width: 53, color: 'cyan')
+          if review_text.include('positive')
+            column(review_text, width: 100, color: 'green')
+          elsif review_text.include('negative')
+            column(review_text, width: 100, color: 'red')
+          else
+            column(review_text, width: 100, color: 'yellow')
+          end
+        end
+      end
+
+      unless deal_details.overall_rating.nil?
+        review_text = "#{deal_details.overall_rating} #{deal_details.total_reviews}"
+        row do
+          column('Overall Reviews', width: 53, color: 'cyan')
+          if review_text.include('positive')
+            column(review_text, width: 100, color: 'green')
+          elsif review_text.include('negative')
+            column(review_text, width: 100, color: 'red')
+          else
+            column(review_text, width: 100, color: 'yellow')
+          end
         end
       end
 
