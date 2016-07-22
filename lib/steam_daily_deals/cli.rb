@@ -43,6 +43,7 @@ class SteamDailyDeals::CLI
     header(title: 'Please wait while we load todays daily deals', color: 'red', align: 'center', width: 160, spacing: 0)
     make_deals
     header(title: 'This may take a minute to load everything', color: 'red', align: 'center', width: 160, spacing: 0)
+    header(title: 'Progress:', color: 'red', align: 'center', width: 160, spacing: 0)
     add_deal_details
     horizontal_rule(width: 160, color: 'red')
     vertical_spacing 1
@@ -74,12 +75,18 @@ class SteamDailyDeals::CLI
   end
 
   def add_deal_details
+    line_count = 0
+
     SteamDailyDeals::Deal.all.each do |deal|
       info = SteamDailyDeals::Scraper.scrape_deal_page(deal.app_url)
       deal.add_deal_information(info)
-      loading_info = "Loaded #{deal.name}"
-      header(title: loading_info, color: 'red', align: 'center', width: 160, spacing: 0)
+      print '='.red * (160 / SteamDailyDeals::Deal.all.uniq.count)
+      line_count += (160 / SteamDailyDeals::Deal.all.uniq.count)
     end
+
+    print '='.red * (160 - line_count)
+
+    vertical_spacing 1
   end
 
   def list_deals
