@@ -13,6 +13,8 @@ end
 # CLI class
 class SteamDailyDeals::CLI
   def call
+    extend CommandLineReporter
+
     puts <<-DOC
 
     ad88888ba  888888888888  88888888888         db         88b           d88
@@ -32,7 +34,10 @@ class SteamDailyDeals::CLI
 
     DOC
 
-    puts "Please wait while we load today's daily deals".red
+    horizontal_rule(width: 80, color: 'red')
+    header(title: 'Please wait while we load todays daily deals', color: 'red', align: 'center', width: 80, spacing: 0)
+    horizontal_rule(width: 80, color: 'red')
+    vertical_spacing 1
     make_deals
     add_deal_details
 
@@ -47,7 +52,7 @@ class SteamDailyDeals::CLI
       case input
       when 'list'
         list_deals
-      when input.to_i.between?(1, SteamDailyDeals::Deal.all.count)
+      when input.to_i..SteamDailyDeals::Deal.all.count
         show_deal(input.to_i)
       when 'exit'
         puts 'See you tomorrow!'.green
