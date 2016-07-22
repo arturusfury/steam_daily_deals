@@ -5,7 +5,7 @@ class SteamDailyDeals::Scraper
     browser.get url
 
     if browser.page_source.include?('not be appropriate for all')
-     browser.find_element(:class, 'btn_grey_white_innerfade').click
+      browser.find_element(:class, 'btn_grey_white_innerfade').click
     end
 
     if browser.page_source.include?('birth date')
