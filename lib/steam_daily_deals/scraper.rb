@@ -47,6 +47,16 @@ class SteamDailyDeals::Scraper
       deal_info[:release_date] = deal_page.css('.date').text
     end
 
+    deal_page.css('.user_reviews_summary_row').each do |reviews|
+      if reviews.css('subtitle').text == 'Recent:'
+        deal_info[:recent_reviews] = reviews.css('.responsive_hidden')
+        deal_info[:recent_rating] = reviews.css('.game_review_summary')
+      elsif reviews.css('subtitle').text == 'Overall'
+        deal_info[:overall_reviews] = reviews.css('.responsive_hidden')
+        deal_info[:overall_rating] = reviews.css('.game_review_summary')
+      end
+    end
+
     deal_info[:popular_tags] = deal_page.css('.popular_tags').children.css('a').map(&:text)
 
     deal_info
