@@ -105,7 +105,11 @@ class SteamDailyDeals::CLI
         row do
           column(i.to_s, color: 'cyan')
           column(deal.name)
-          column(deal.final_price, color: 'red')
+          if deal.final_price.nil? || deal.final_price == ''
+            column('Free', color: 'red')
+          else
+            column(deal.final_price, color: 'red')
+          end
           column(deal.availibility, color: 'green')
         end
       end
