@@ -122,7 +122,6 @@ class SteamDailyDeals::CLI
   def show_deal(deal)
     extend CommandLineReporter
 
-    # A cheaty way to get a seperation in between the listed deals
     vertical_spacing 2
 
     deal_details = SteamDailyDeals::Deal.all[deal - 1]
