@@ -119,12 +119,12 @@ class SteamDailyDeals::CLI
     print 'You may also type list to see the list again or exit to quit: '
   end
 
-  def show_deal(deal)
+  def show_deal(index)
     extend CommandLineReporter
 
     vertical_spacing 2
 
-    deal_details = SteamDailyDeals::Deal.all[deal - 1]
+    deal_details = SteamDailyDeals::Deal.find_deal(index)
 
     # Deal Title and Price
     table(border: true) do

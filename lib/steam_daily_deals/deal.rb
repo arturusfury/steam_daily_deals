@@ -28,6 +28,10 @@ class SteamDailyDeals::Deal
     end
   end
 
+  def self.find_deal(index)
+    self.all[index - 1]
+  end
+
   def add_deal_information(deal_info)
     deal_info.each do |key, value|
       send("#{key}=", value)
