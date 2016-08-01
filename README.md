@@ -4,7 +4,7 @@ Using this ruby CLI gem you will be able to quickly see which games are on sale 
 
 ## Usage
 
-    $ ruby bin/steam-daily-deals
+    $ ./bin/steam-daily-deals
 
 ## Development
 
