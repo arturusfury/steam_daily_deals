@@ -22,18 +22,15 @@ class SteamDailyDeals::Scraper
   end
 
   def self.scrape_index_page(index_url = 'http://store.steampowered.com')
-    deals = []
-
-    get_page(index_url).css('div.cluster_scroll_area').each do |card|
+    page = get_page(index_url).css('div.cluster_scroll_area')
+    page.each_with_object([]) do |card, arr|
       card.css('a.cluster_capsule').each do |deal|
         app_url = deal.attr('href').to_s
         final_price = deal.css('.discount_final_price').text
         availibility = deal.css('.main_cap_status').text
-        deals << { app_url: app_url, final_price: final_price, availibility: availibility }
+        arr <<  { app_url: app_url, final_price: final_price, availibility: availibility }
       end
     end
-
-    deals
   end
 
   def self.scrape_deal_page(page_url)
@@ -55,20 +52,24 @@ class SteamDailyDeals::Scraper
     # to figure out how to grab these elements with nokogiri
     # it's not the worst code ever, the double selector for the span's gets a
     # little ugly and confusing for someone to read
-    if deal_page.css('.subtitle').text.include?('Recent')
-      deal_info[:recent_rating] = deal_page.search('div[text()="Recent:"] + span').text
-      deal_info[:recent_reviews] = deal_page.search('div[text()="Recent:"] + span + span').text
-    end
-
-    if deal_page.css('.subtitle').text.include?('Overall')
-      deal_info[:overall_rating] = deal_page.search('div[text()="Overall:"] + span').text
-      deal_info[:total_reviews] = deal_page.search('div[text()="Overall:"] + span + span').text
-    end
+    # if deal_page.css('.subtitle').text.include?('Recent')
+    #   deal_info[:recent_rating] = deal_page.search('div[text()="Recent:"] + span').text
+    #   deal_info[:recent_reviews] = deal_page.search('div[text()="Recent:"] + span + span').text
+    # end
+    methodname(deal_page, deal_info, 'Recent')
+    methodname(deal_page, deal_info, 'Overall')
 
     deal_info[:popular_tags] = deal_page.css('.popular_tags').children.css('a').map(&:text)
 
     deal_info[:popular_tags].map { |tag| tag.delete!("\t").delete!("\n") }
 
     deal_info
+  end
+
+  def self.methodname(page, hash, option)
+    if page.css('.subtitle').text.include?(option)
+      hash[:overall_rating] = page.search('div[text()="' + option + ':"] + span').text
+      hash[:total_reviews] = page.search('div[text()="' + option + ':"] + span + span').text
+    end
   end
 end

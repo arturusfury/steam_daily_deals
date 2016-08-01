@@ -23,9 +23,7 @@ class SteamDailyDeals::Deal
   end
 
   def self.create_from_collection(deals)
-    deals.each do |deal|
-      new(deal)
-    end
+    deals.each { |deal| new(deal) }
   end
 
   def self.find_deal(index)
