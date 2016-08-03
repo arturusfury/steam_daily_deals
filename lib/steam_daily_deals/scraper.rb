@@ -56,8 +56,8 @@ class SteamDailyDeals::Scraper
     #   deal_info[:recent_rating] = deal_page.search('div[text()="Recent:"] + span').text
     #   deal_info[:recent_reviews] = deal_page.search('div[text()="Recent:"] + span + span').text
     # end
-    methodname(deal_page, deal_info, 'Recent')
-    methodname(deal_page, deal_info, 'Overall')
+    scrape_rating(deal_page, deal_info, 'Recent')
+    scrape_rating(deal_page, deal_info, 'Overall')
 
     deal_info[:popular_tags] = deal_page.css('.popular_tags').children.css('a').map(&:text)
 
@@ -66,7 +66,7 @@ class SteamDailyDeals::Scraper
     deal_info
   end
 
-  def self.methodname(page, hash, option)
+  def self.scrape_rating(page, hash, option)
     if page.css('.subtitle').text.include?(option)
       hash[:overall_rating] = page.search('div[text()="' + option + ':"] + span').text
       hash[:total_reviews] = page.search('div[text()="' + option + ':"] + span + span').text
