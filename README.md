@@ -8,7 +8,7 @@ Using this ruby CLI gem you will be able to quickly see which games are on sale 
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+You'll need to change the version file in `version.rb` before trying to run `bundle install`. After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 The first time you run this program it might need to install PhantomJS if it isn't installed already.  This will be automatic and should only happen once.
 
